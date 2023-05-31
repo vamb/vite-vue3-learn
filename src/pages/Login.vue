@@ -7,7 +7,7 @@
       :model="formState"
       name="basic"
       class="login-content"
-      :label-col="{ span: 8 }"
+      :label-col="{ span: 6 }"
       :wrapper-col="{ span: 16 }"
       autocomplete="off"
       @finish="onFinish"
@@ -30,11 +30,11 @@
       </a-form-item>
 
       <div class="inline-items">
-        <a-form-item name="remember" :wrapper-col="{ offset: 8, span: 16 }">
+        <a-form-item name="remember" :wrapper-col="{ offset: 6, span: 18 }" style="width: 200px">
           <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
         </a-form-item>
 
-        <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
+        <a-form-item :wrapper-col="{ offset: 6, span: 16 }" style="width: 200px">
           <a-button type="primary" html-type="submit">Submit</a-button>
         </a-form-item>
       </div>
@@ -44,17 +44,12 @@
 </template>
 
 <script>
-import { Form, Button, Input, Checkbox } from 'ant-design-vue'
-import { defineComponent, reactive, ref, onMounted, onUnmounted } from 'vue'
+import { defineComponent, reactive, ref, onMounted, onUnmounted, onUpdated } from 'vue'
+import { userLogin } from '@/utils/utils'
 
 export default defineComponent({
   components: {
-    AForm: Form,
-    AFromItem: Form.Item,
-    AInput: Input,
-    AInputPassword: Input.Password,
-    ACheckbox: Checkbox,
-    AButton: Button
+
   },
   setup() {
     const clientWidth = ref(document.documentElement.clientWidth)
@@ -65,7 +60,7 @@ export default defineComponent({
       remember: true,
     });
     const onFinish = values => {
-      console.log('Success:', values);
+      userLogin(values)
     };
     const onFinishFailed = errorInfo => {
       console.log('Failed:', errorInfo);
@@ -107,12 +102,16 @@ export default defineComponent({
 .login-content {
   display: flex;
   flex-direction: column;
+  align-content: center;
   gap: 10px;
   padding: 10px;
   background-color: lightgoldenrodyellow;
   border: 1px solid lightslategray;
   border-radius: 10px;
   width: 500px;
-  height: 140px;
+  height: 188px;
+}
+.login-content > div {
+  flex-grow: 1;
 }
 </style>
