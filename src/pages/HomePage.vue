@@ -3,14 +3,15 @@
     <a-layout-header class="header">
       <div class="logo" />
       <a-menu
-          v-model:selectedKeys="selectedKeys1"
-          theme="dark"
-          mode="horizontal"
-          :style="{ lineHeight: '64px' }"
+        v-model:selectedKeys="selectedKeys1"
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">nav 1</a-menu-item>
-        <a-menu-item key="2">nav 2</a-menu-item>
-        <a-menu-item key="3">nav 3</a-menu-item>
+        <a-menu-item key="1">
+          basic
+        </a-menu-item>
+        <a-menu-item key="2">advanced</a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout class="page-content">
@@ -73,21 +74,22 @@
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
-      <a-layout style="padding: 0 24px 24px">
+      <a-layout style="padding: 0 24px">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>Home</a-breadcrumb-item>
           <a-breadcrumb-item>List</a-breadcrumb-item>
           <a-breadcrumb-item>App</a-breadcrumb-item>
         </a-breadcrumb>
-        <a-layout-content
-            :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
-        >
+        <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
           <router-view></router-view>
         </a-layout-content>
       </a-layout>
     </a-layout>
     <a-layout-footer class="page-footer">
-      this is footer
+      <div>Tag1</div>
+      <div>Tag2</div>
+      <div>Tag3</div>
+      <div>Tag4</div>
     </a-layout-footer>
   </a-layout>
 </template>
@@ -110,8 +112,8 @@
       })
       return {
         pageHeight: pageHeight,
-        selectedKeys1: ref(['2']),
-        selectedKeys2: ref(['1']),
+        selectedKeys1: ref(['1']),
+        selectedKeys2: ref(['2']),
         collapsed: ref(false),
         openKeys: ref(['sub1']),
       };
@@ -125,5 +127,26 @@
   }
   .page-footer {
     min-height: 50px;
+    padding: 0 50px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .page-footer > div {
+    font-size: 12px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+  }
+  .page-footer > div:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+  .page-footer > :not(:last-child)::after {
+    content: '|';
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.45);
   }
 </style>
