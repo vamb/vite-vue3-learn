@@ -4,12 +4,17 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: import('../pages/HomePage.vue')
+    meta: { title: '主页' },
+    component: import('../pages/HomePage.vue'),
+    children: [
+
+    ]
   },
   {
     path: '/login',
     name: 'login',
-    component: import('../pages/Login.vue')
+    meta: { title: '登录页' },
+    component: import('../pages/Login.vue'),
   },
   // {
   //   path: '/about',
